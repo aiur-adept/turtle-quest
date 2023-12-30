@@ -9,7 +9,7 @@ import {
 } from './menu.js';
 
 import {
-    magicScene
+    magicScene,
 } from './magic.js';
 
 
@@ -23,5 +23,4 @@ export {
 
     magicScene,
 
-    
 };

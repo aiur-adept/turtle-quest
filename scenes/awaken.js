@@ -11,7 +11,7 @@ const awakenScene = {
         { name: "Explore", value: "explore" },
         { name: "Talk to the trees", value: "talk" },
     ],
-    transition: (self, state, action) => {
+    interact: (self, state, action) => {
         switch (action) {
             case 'explore':
                 return 'awakenExploreScene';
@@ -24,7 +24,7 @@ const awakenScene = {
 const awakenExploreScene = {
     name: 'awakenExploreScene',
     description: [
-        "You walk explore the mysterious forest.",
+        "You walk, exploring the mysterious forest.",
         "Your mind seeks the way through the dream.",
         "As you walk, you discover ancient ruins and hidden pathways.",
     ],
@@ -32,7 +32,7 @@ const awakenExploreScene = {
         { name: "Enter the ruins", value: "enterRuins" },
         { name: "Follow the hidden path", value: "followPath" }
     ],
-    transition: (self, state, action) => {
+    interact: (self, state, action) => {
         switch (action) {
             case 'enterRuins':
                 return 'enterRuinsScene';
@@ -53,7 +53,7 @@ const awakenTalkScene = {
         { name: "Ask about the forest's history", value: "askHistory" },
         { name: "Inquire about magical knowledge", value: "askMagic" }
     ],
-    transition: (self, state, action) => {
+    interact: (self, state, action) => {
         switch (action) {
             case 'askHistory':
                 return 'askHistoryScene';

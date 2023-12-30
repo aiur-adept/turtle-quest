@@ -1,4 +1,4 @@
-import { blackboard } from '../blackboard.js'; 
+import { blackboard } from '../blackboard.js';
 
 const menuScene = {
     name: 'menuScene',
@@ -8,9 +8,10 @@ const menuScene = {
         { name: "View inventory", value: "viewInventory" },
         { name: "Check character stats", value: "checkStats" },
         { name: "Save game", value: "saveGame" },
-        { name: "Close menu", value: "closeMenu"}
+        { name: "Close menu", value: "closeMenu" }
     ],
-    transition: (self, state, action) => {
+    stack: true,
+    interact: (self, state, action) => {
         switch (action) {
             case 'viewInventory':
                 return 'viewInventoryScene';
@@ -21,7 +22,7 @@ const menuScene = {
             case 'dream':
                 return 'dreamScene';
             case 'closeMenu':
-                return blackboard.currentScene.name;
+                return;
         }
     }
 };

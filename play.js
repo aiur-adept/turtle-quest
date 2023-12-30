@@ -2,52 +2,90 @@ import chalk from 'chalk';
 
 import { printBanner } from './banner.js';
 import { interact } from './interact.js';
+import { storyTell } from './storyTeller.js';
 import { sleep } from './utils.js';
 
 import { gameData } from './gameData.js';
 import * as scenes from './scenes/index.js';
-import { blackboard } from './blackboard.js';
+
+const awaken = () => (
+    [
+        Object.assign({}, scenes.awakenScene),
+        Object.assign({}, gameData.awakenState)
+    ]
+);
 
 async function main() {
     // welcome the player
     printBanner();
 
-    // set the scene
-    let scene = scenes.awakenScene;
-    blackboard.currentScene = scene;
-
-    // set the state
-    let state = gameData.awakenState;
+    // begin the scene and the state
+    const [firstScene, state] = awaken();
+    const sceneStack = [firstScene];
 
     // game loop
     while (true) {
+        // consider the current scene
+        // (but first, guard against zero-stack)
+        if (sceneStack.length == 0) {
+            sceneStack.push(awaken()[0]);
+        }
+        const scene = sceneStack[sceneStack.length - 1];
 
-        // get the user's action (interact displays the situation for an informed choice)
-        const { action } = await interact(scene, state);
-
-        // echo action
-        console.log(chalk.grey(`You chose: ${action}`));
-        console.log();
+        //
+        // display the scene
+        //
+        // (that is, prompt)
+        //
+        if (Array.isArray(scene.description)) {
+            for (const line of scene.description) {
+                storyTell(line);
+                await sleep(100);
+            }
+        } else {
+            storyTell(scene.description);
+        }
         await sleep(1000);
 
+        //
+        // interact
+        //
+        // the CLI interacts with the user, and the
+        // user's input interacts with the scene
+        // we ultimately want to know what scene is next
+        // given its name as a key (every moment, we unlock
+        // a magic door! <3)
+        let key = null;
+        const { action } = await interact(scene, state);
+        console.log(chalk.grey(`You chose: ${action}`));
+        console.log();
+        await sleep(500);
         switch (action) {
             case 'magic':
-                scene = scenes.magicScene;
-                break;
+                key = 'magicScene'; break;
             case 'menu':
-                scene = scenes.menuScene;
-                break;
+                key = 'menuScene'; break;
             default:
-                // NOTE: scene is "self" for .transition()
-                const newSceneKey = scene.transition(scene, state, action);
-                blackboard.currentScene = newSceneKey;
-                // transition to the new scene
-                if (!scenes[newSceneKey]) {
-                    console.log(chalk.yellow("The muses have not seen this far into the tale yet..."));
-                    await sleep(1000);
-                } else {
-                    scene = scenes[newSceneKey];
-                }
+                key = scene.interact(scene, state, action);
+        }
+        await sleep(500);
+
+        //
+        // next scene
+        //
+        if (!key) {
+            // if given no key, nothing is next, simply pop this scene
+            sceneStack.pop();
+        } else if (!scenes[key]) {
+            console.log(chalk.yellow('The muses have not seen that far into the tale yet...'));
+            console.log(chalk.blue('~~~'));
+        } else {
+            const nextScene = Object.assign({}, scenes[key]);
+            if (nextScene.stack) {
+                sceneStack.push(nextScene);
+            } else {
+                sceneStack[sceneStack.length - 1] = nextScene;
+            }
         }
     }
 }

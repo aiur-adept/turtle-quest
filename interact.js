@@ -1,27 +1,18 @@
 import inquirer from 'inquirer';
 
 import { choiceFilter } from './filters/choice.js';
-import { storyTell } from './storyTeller.js';
-import { sleep } from './utils.js';
 
 async function interact(scene, state) {
-    // give the prompt
-    if (Array.isArray(scene.description)) {
-        for (const line of scene.description) {
-            storyTell(line);
-        }
-    } else {
-        storyTell(scene.description);
-    }
-    await sleep(1000);
-    // prepare options
+    //
+    // construct choices
+    //
     // copy choices (we will mutate it)
     let choices = Array.from(scene.choices);
-    // add magic if not already in magicScene
+    // add magic choice if not already in magicScene
     if (scene.name !== 'magicScene' && scene.name !== 'menuScene') {
         choices.push({ name: "Use magic", value: "magic" });
     }
-    // add menu if not already in menuScene
+    // add menu choice if not already in menuScene
     if (scene.name !== 'menuScene') {
         choices.push({ name: "Open menu", value: "menu" });
     }
@@ -31,6 +22,10 @@ async function interact(scene, state) {
     if (scene.choiceFilter) {
         choices = scene.choiceFilter(choices);
     }
+
+    //
+    // interact
+    //
     // use inquirer to get actual interaction
     return await inquirer.prompt([
         {

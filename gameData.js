@@ -1,16 +1,3 @@
-import {
-    awakenScene,
-    awakenExploreScene,
-    awakenTalkScene,
-    awakenMagicScene
-} from './scenes/awaken.js';
-
-import {
-    menuScene
-} from './scenes/menu.js';
-
-
-
 const gameData = {
     awakenState: {
         name: 'null',
@@ -21,15 +8,6 @@ const gameData = {
         health: 20,
         mana: 20,
     },
-
-    // awaken scene
-    awakenScene,
-    awakenExploreScene,
-    awakenTalkScene,
-    awakenMagicScene,
-
-    // menu scene
-    menuScene,
 };
 
 export {

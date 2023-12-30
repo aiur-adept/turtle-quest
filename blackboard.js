@@ -1,0 +1,5 @@
+const blackboard = {};
+
+export {
+    blackboard
+};

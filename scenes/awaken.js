@@ -18,11 +18,13 @@ const awaken_exploreScene = {
     description: [
         "You walk, exploring the mysterious forest.",
         "Your mind seeks the way through the dream.",
-        "As you walk, you discover ancient ruins and hidden pathways.",
+        "As you walk, you see a vinegrown doorway to ancient ruins,",
+        "And you sense hidden pathways.",
     ],
     choices: [
         { name: "Enter the ruins", value: "ruins_enterScene" },
-        { name: "Follow the hidden path", value: "path_enterScene" }
+        { name: "Follow the hidden path", value: "path_enterScene" },
+        { name: "Talk to the trees", value: "awaken_talkScene" },
     ]
 };
 

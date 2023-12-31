@@ -13,7 +13,19 @@ import {
 } from './magic.js';
 
 import {
-    ruins_enterScene
+    ruins_enterScene,
+    ruins_foyerScene,
+
+    ruins_blueDoorway_EnterScene,
+    ruins_readBlueBookScene,
+
+    ruins_redDoorway_EnterScene,
+    ruins_readRedBookScene,
+
+    ruins_hiddenPath_EnterScene,
+    ruins_hiddenPathLeftScene,
+    ruins_hiddenPathRightScene,
+    ruins_hiddenPathGatewayScene
 } from './ruins.js';
 
 
@@ -22,10 +34,26 @@ export {
     awaken_exploreScene,
     awaken_talkScene,
 
+
+
     menuScene,
 
     magicScene,
 
-    ruins_enterScene
+
+
+    ruins_enterScene,
+    ruins_foyerScene,
+
+    ruins_blueDoorway_EnterScene,
+    ruins_readBlueBookScene,
+
+    ruins_redDoorway_EnterScene,
+    ruins_readRedBookScene,
+
+    ruins_hiddenPath_EnterScene,
+    ruins_hiddenPathLeftScene,
+    ruins_hiddenPathRightScene,
+    ruins_hiddenPathGatewayScene
 
 };

@@ -8,6 +8,12 @@ async function interact(scene, state) {
     //
     // copy choices (we will mutate it)
     let choices = Array.from(scene.choices);
+    // .choiceFunc() is used to give nondeterministic or 
+    // contextual options
+    if (scene.choiceFunc) {
+        choices = choices.concat(scene.choiceFunc(state));
+    }
+    choices = choices.concat()
     // add magic choice if not already in magicScene
     if (scene.name !== 'magicScene' && scene.name !== 'menuScene') {
         choices.push({ name: "Use magic", value: "magic" });

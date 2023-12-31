@@ -21,7 +21,8 @@ const magicScene = {
             case 'castProtection':
                 storyTell("You cast Protective Circle;");
                 storyTell("A shimmering veil of aura surrounds you ~*+xo");
-                break;
+                state.
+                    break;
             case 'castTravel':
                 storyTell("A little fairy appears and says, "
                     + chalk.yellow("'TODO: ask for a travel key here...'"));

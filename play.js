@@ -72,6 +72,9 @@ async function main() {
                     // else get it from the return value of .interact()
                     key = scene.interact(scene, state, action);
                 }
+                if (scene.event) {
+                    scene.event(scene, state, action);
+                }
         }
         await sleep(500);
 

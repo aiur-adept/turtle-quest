@@ -6,7 +6,7 @@ const gameData = {
             'heartSutra': 1,
         },
         health: 20,
-        auras: [],
+        auras: new Set(),
     },
 };
 

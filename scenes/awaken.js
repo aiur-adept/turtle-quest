@@ -35,9 +35,11 @@ const awaken_talkScene = {
         "placing your hands on their trunks, asking them to speak.",
         "They say, " + chalk.yellow("'We will speak softly of forgotten secrets...'"),
     ],
+    stack: true,
     choices: [
         { name: "Ask about the forest's history", value: "trees_askHistoryScene" },
-        { name: "Inquire about magical knowledge", value: "trees_askMagicScene" }
+        { name: "Inquire about magical knowledge", value: "trees_askMagicScene" },
+        { name: "Return to your surroundings", value: null },
     ]
 };
 

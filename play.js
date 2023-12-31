@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
 import { printBanner } from './banner.js';
+import { describe } from './describe.js';
 import { interact } from './interact.js';
-import { storyTell } from './storyTeller.js';
 import { sleep } from './utils.js';
 
 import { gameData } from './gameData.js';
@@ -35,20 +35,10 @@ async function main() {
         //
         // display the scene
         //
-        // (that is, prompt)
-        //
-        if (Array.isArray(scene.description)) {
-            for (const line of scene.description) {
-                storyTell(line);
-                await sleep(100);
-            }
-        } else {
-            storyTell(scene.description);
-        }
-        await sleep(1000);
+        await describe(scene.description);
 
         //
-        // interact
+        // interact with the scene (and get the next scene)
         //
         // the CLI interacts with the user, and the
         // user's input interacts with the scene
@@ -60,10 +50,8 @@ async function main() {
         console.log();
         await sleep(500);
         switch (action) {
-            case 'magic':
-                key = 'magicScene'; break;
-            case 'menu':
-                key = 'menuScene'; break;
+            case null:
+                break;
             default:
                 // if the value of the choice was a scene name...
                 if (/.+Scene/.test(action)) {
@@ -79,7 +67,7 @@ async function main() {
         await sleep(500);
 
         //
-        // next scene
+        // transition to the next scene
         //
         if (!key) {
             // if given no key, nothing is next, simply pop this scene

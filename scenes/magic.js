@@ -12,7 +12,8 @@ const magicScene = {
     choices: [
         { name: "Cast a spell of protection", value: "castProtection" },
         { name: "Cast a spell of travel", value: "castTravel" },
-        { name: "Return to the start of the tale", value: "returnStart" }
+        { name: "Return to the start of the tale", value: "returnStart" },
+        { name: "Cast no magic", value: null }
     ],
     stack: true,
     interact: (self, state, action) => {
@@ -21,8 +22,7 @@ const magicScene = {
             case 'castProtection':
                 storyTell("You cast Protective Circle;");
                 storyTell("A shimmering veil of aura surrounds you ~*+xo");
-                state.
-                    break;
+                break;
             case 'castTravel':
                 storyTell("A little fairy appears and says, "
                     + chalk.yellow("'TODO: ask for a travel key here...'"));

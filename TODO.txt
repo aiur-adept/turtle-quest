@@ -1,1 +1,4 @@
-implement a *stack* for scenes, rather than storing "currentScene" on blackboard and returning to it 
+build tool for authoring content easier (basic signpost stuff)
+
+    - inquirer to interact
+    - generates .js files in /scenes/

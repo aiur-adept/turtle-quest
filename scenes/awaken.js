@@ -1,70 +1,46 @@
 import chalk from 'chalk';
 
-const awakenScene = {
-    name: 'awakenScene',
+const awaken_enterScene = {
+    name: 'awaken_enterScene',
     description: [
         "You awaken in a mysterious forest.",
         "The air is enchanted with much memory.",
         "You hear faintly the leaves in the canopy dancing.",
     ],
     choices: [
-        { name: "Explore", value: "explore" },
-        { name: "Talk to the trees", value: "talk" },
-    ],
-    interact: (self, state, action) => {
-        switch (action) {
-            case 'explore':
-                return 'awakenExploreScene';
-            case 'talk':
-                return 'awakenTalkScene';
-        }
-    },
+        { name: "Explore", value: "awaken_exploreScene" },
+        { name: "Talk to the trees", value: "awaken_talkScene" },
+    ]
 };
 
-const awakenExploreScene = {
-    name: 'awakenExploreScene',
+const awaken_exploreScene = {
+    name: 'awaken_exploreScene',
     description: [
         "You walk, exploring the mysterious forest.",
         "Your mind seeks the way through the dream.",
         "As you walk, you discover ancient ruins and hidden pathways.",
     ],
     choices: [
-        { name: "Enter the ruins", value: "enterRuins" },
-        { name: "Follow the hidden path", value: "followPath" }
-    ],
-    interact: (self, state, action) => {
-        switch (action) {
-            case 'enterRuins':
-                return 'enterRuinsScene';
-            case 'followPath':
-                return 'followPathScene';
-        }
-    }
+        { name: "Enter the ruins", value: "ruins_enterScene" },
+        { name: "Follow the hidden path", value: "path_enterScene" }
+    ]
 };
 
-const awakenTalkScene = {
-    name: 'awakenTalkScene',
+const awaken_talkScene = {
+    name: 'awaken_talkScene',
     description: [
         "You attempt to communicate with the ancient trees,",
         "placing your hands on their trunks, asking them to speak.",
         "They say, " + chalk.yellow("'We will speak softly of forgotten secrets...'"),
     ],
     choices: [
-        { name: "Ask about the forest's history", value: "askHistory" },
-        { name: "Inquire about magical knowledge", value: "askMagic" }
-    ],
-    interact: (self, state, action) => {
-        switch (action) {
-            case 'askHistory':
-                return 'askHistoryScene';
-            case 'askMagic':
-                return 'askMagicScene';
-        }
-    }
+        { name: "Ask about the forest's history", value: "trees_askHistoryScene" },
+        { name: "Inquire about magical knowledge", value: "trees_askMagicScene" }
+    ]
 };
 
 export {
-    awakenScene,
-    awakenExploreScene,
-    awakenTalkScene
+    awaken_enterScene,
+    awaken_exploreScene,
+    awaken_talkScene
 };

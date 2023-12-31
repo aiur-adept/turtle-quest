@@ -10,7 +10,7 @@ import * as scenes from './scenes/index.js';
 
 const awaken = () => (
     [
-        Object.assign({}, scenes.awakenScene),
+        Object.assign({}, scenes.awaken_enterScene),
         Object.assign({}, gameData.awakenState)
     ]
 );
@@ -57,7 +57,6 @@ async function main() {
         // a magic door! <3)
         let key = null;
         const { action } = await interact(scene, state);
-        console.log(chalk.grey(`You chose: ${action}`));
         console.log();
         await sleep(500);
         switch (action) {
@@ -66,7 +65,13 @@ async function main() {
             case 'menu':
                 key = 'menuScene'; break;
             default:
-                key = scene.interact(scene, state, action);
+                // if the value of the choice was a scene name...
+                if (/.+Scene/.test(action)) {
+                    key = action;
+                } else {
+                    // else get it from the return value of .interact()
+                    key = scene.interact(scene, state, action);
+                }
         }
         await sleep(500);
 

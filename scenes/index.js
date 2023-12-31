@@ -1,7 +1,7 @@
 import {
-    awakenScene,
-    awakenExploreScene,
-    awakenTalkScene,
+    awaken_enterScene,
+    awaken_exploreScene,
+    awaken_talkScene,
 } from './awaken.js';
 
 import {
@@ -12,15 +12,20 @@ import {
     magicScene,
 } from './magic.js';
 
+import {
+    ruins_enterScene
+} from './ruins.js';
 
 
 export {
-    awakenScene,
-    awakenExploreScene,
-    awakenTalkScene,
+    awaken_enterScene,
+    awaken_exploreScene,
+    awaken_talkScene,
 
     menuScene,
 
     magicScene,
+
+    ruins_enterScene
 
 };

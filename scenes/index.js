@@ -4,7 +4,9 @@ import {
 } from './awaken.js';
 
 import {
-    menuScene
+    menuScene,
+    viewInventoryScene,
+    checkStatsScene
 } from './menu.js';
 
 import {
@@ -44,11 +46,12 @@ export {
     awaken_exploreScene,
 
 
-
     menuScene,
+    viewInventoryScene,
+    checkStatsScene,
+
 
     magicScene,
-
 
 
     ruins_enterScene,
@@ -64,7 +67,6 @@ export {
     ruins_hiddenPathLeftScene,
     ruins_hiddenPathRightScene,
     ruins_hiddenPathGatewayScene,
-
 
 
     trees_talkEnterScene,

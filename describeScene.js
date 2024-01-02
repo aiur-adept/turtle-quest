@@ -1,7 +1,7 @@
 import { storyTell } from './storyTeller.js';
 import { sleep } from './utils.js';
 
-const describe = async (description, state) => {
+const describeScene = async (description, state) => {
     // if a function, call it (it should return either an array or one line)
     if (description.apply && description.call) {
         description = description(state);
@@ -16,9 +16,9 @@ const describe = async (description, state) => {
         // or, print it simply (one line)
         storyTell(description);
     }
-    await sleep(1000);
+    await sleep(200);
 };
 
 export {
-    describe
+    describeScene
 };

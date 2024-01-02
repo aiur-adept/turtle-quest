@@ -1,7 +1,8 @@
 import chalk from 'chalk';
 
 import { printBanner } from './banner.js';
-import { describe } from './describe.js';
+import { describeScene } from './describeScene.js';
+import { describeItem } from './describeItem.js';
 import { interact } from './interact.js';
 import { sleep } from './utils.js';
 
@@ -35,7 +36,7 @@ async function main() {
         //
         // display the scene
         //
-        await describe(scene.description, state);
+        await describeScene(scene.description, state);
 
         //
         // interact with the scene (and get the next scene)
@@ -46,26 +47,31 @@ async function main() {
         // given its name as a key (every moment, we unlock
         // a magic door! <3)
         let key = null;
+        // ephemeral scenes have no action, they just display their description and pop off
         if (scene.ephemeral) {
             sceneStack.pop();
             continue;
         }
         const { action } = await interact(scene, state);
         console.log();
-        await sleep(500);
+        await sleep(200);
         switch (action) {
             case null:
                 break;
             default:
-                // if the value of the choice was a scene name...
                 if (/.+Scene/.test(action)) {
+                    // if the value of the choice was a scene name...
                     key = action;
+                } else if (/describeItem_.+/.test(action)) {
+                    // if the value of the choice was to describe an item...
+                    const itemName = action.match(/describeItem_(.+)/)[1];
+                    describeItem(itemName);
                 } else {
                     // else get it from the return value of .interact()
                     key = scene.interact(scene, state, action);
                 }
         }
-        await sleep(500);
+        await sleep(200);
 
         // scene has ended, run onEnd hook
         if (scene.onEnd) {

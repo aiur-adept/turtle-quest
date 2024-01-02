@@ -2,7 +2,7 @@ import { blackboard } from '../blackboard.js';
 
 const menuScene = {
     name: 'menuScene',
-    description: "You open the menu and review your options.",
+    description: "You review your options...",
     stack: true,
     choices: [
         // TODO { name: "Have a dream", value: "dream" },
@@ -15,10 +15,48 @@ const menuScene = {
 
 const viewInventoryScene = {
     name: 'viewInventoryScene',
-    description: "You set down your pack and look through it.",
+    description: (state) => {
+        const msgs = ["You set down your pack and look through it."];
+        for (const item in state.inventory) {
+            msgs.push(item)
+        }
+        return msgs;
+    },
     stack: true,
+    exclusiveChoices: true,
+    choices: (state) => {
+        const choices = [];
+        for (const item in state.inventory) {
+            choices.push({ name: item, value: `describeItem_${item}` });
+        }
+        return choices;
+    },
+};
+
+const checkStatsScene = {
+    name: 'checkStatsScene',
+    description: (state) => {
+        const msgs = [
+            'Health:',
+            `  o ${state.health}`,
+            'Mind:',
+            `  = ${state.mind}`
+        ];
+        if (state.auras.size > 0) {
+            msgs.push("Auras:");
+            for (const aura in state.auras) {
+                msgs.push(`  + ${aura}`)
+            }
+        }
+
+        return msgs;
+    },
+    stack: true,
+    ephemeral: true
 };
 
 export {
-    menuScene
+    menuScene,
+    viewInventoryScene,
+    checkStatsScene
 };

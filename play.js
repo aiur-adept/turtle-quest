@@ -35,7 +35,7 @@ async function main() {
         //
         // display the scene
         //
-        await describe(scene.description);
+        await describe(scene.description, state);
 
         //
         // interact with the scene (and get the next scene)
@@ -46,6 +46,10 @@ async function main() {
         // given its name as a key (every moment, we unlock
         // a magic door! <3)
         let key = null;
+        if (scene.ephemeral) {
+            sceneStack.pop();
+            continue;
+        }
         const { action } = await interact(scene, state);
         console.log();
         await sleep(500);
@@ -60,11 +64,13 @@ async function main() {
                     // else get it from the return value of .interact()
                     key = scene.interact(scene, state, action);
                 }
-                if (scene.event) {
-                    scene.event(scene, state, action);
-                }
         }
         await sleep(500);
+
+        // scene has ended, run onEnd hook
+        if (scene.onEnd) {
+            scene.onEnd(state);
+        }
 
         //
         // transition to the next scene

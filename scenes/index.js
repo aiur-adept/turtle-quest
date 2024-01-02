@@ -1,7 +1,6 @@
 import {
     awaken_enterScene,
-    awaken_exploreScene,
-    awaken_talkScene,
+    awaken_exploreScene
 } from './awaken.js';
 
 import {
@@ -28,11 +27,21 @@ import {
     ruins_hiddenPathGatewayScene
 } from './ruins.js';
 
+import {
+    trees_talkEnterScene,
+
+    trees_askHistoryScene,
+    trees_askSeedlingsScene,
+    trees_askLongYearsScene,
+    trees_askCanopyScene,
+
+    trees_askMagicScene
+} from './trees.js'
+
 
 export {
     awaken_enterScene,
     awaken_exploreScene,
-    awaken_talkScene,
 
 
 
@@ -54,6 +63,17 @@ export {
     ruins_hiddenPath_EnterScene,
     ruins_hiddenPathLeftScene,
     ruins_hiddenPathRightScene,
-    ruins_hiddenPathGatewayScene
+    ruins_hiddenPathGatewayScene,
+
+
+
+    trees_talkEnterScene,
+
+    trees_askHistoryScene,
+    trees_askSeedlingsScene,
+    trees_askLongYearsScene,
+    trees_askCanopyScene,
+
+    trees_askMagicScene
 
 };

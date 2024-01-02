@@ -59,7 +59,7 @@ const ruins_readBlueBookScene = {
     choices: [
         { name: "Return through the blue doorway", value: "ruins_foyerScene" }
     ],
-    event: (self, state, action) => {
+    onEnd: (self, state, action) => {
         state.auras.add('serenity');
     }
 };
@@ -92,7 +92,7 @@ const ruins_readRedBookScene = {
     choices: [
         { name: "Return through the red doorway", value: "ruins_foyerScene" }
     ],
-    event: (self, state, action) => {
+    onEnd: (self, state, action) => {
         state.auras.add('safety');
     }
 };
@@ -170,7 +170,7 @@ const ruins_hiddenPathGatewayScene = {
         { name: "Explore", value: "awaken_exploreScene" },
         { name: "Talk to the trees", value: "awaken_talkScene" },
     ],
-    event: (self, state, action) => {
+    onEnd: (self, state, action) => {
         state.inventory['diamondSutra'] = 1;
     }
 };

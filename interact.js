@@ -7,7 +7,7 @@ async function interact(scene, state) {
     // construct choices
     //
     // copy choices (we will mutate it)
-    let choices = Array.from(scene.choices);
+    let choices = scene.choices ? Array.from(scene.choices) : [];
     // .choiceFunc() is used to give nondeterministic or 
     // contextual options
     if (scene.choiceFunc) {
@@ -20,7 +20,7 @@ async function interact(scene, state) {
     }
     // add menu choice if not already in menuScene
     if (scene.name !== 'menuScene') {
-        choices.push({ name: "Open menu", value: "magicScene" });
+        choices.push({ name: "Open menu", value: "menuScene" });
     }
     // apply choiceFilter based on state
     choices = choiceFilter(choices, state);

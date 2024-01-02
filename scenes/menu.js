@@ -17,7 +17,6 @@ const viewInventoryScene = {
     name: 'viewInventoryScene',
     description: "You set down your pack and look through it.",
     stack: true,
-
 };
 
 export {

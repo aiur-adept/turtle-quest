@@ -3,8 +3,14 @@ import chalk from 'chalk';
 const awaken_enterScene = {
     name: 'awaken_enterScene',
     description: (state) => {
+        const locations = ['glade', 'grove', 'clearing', 'valley'];
+        const insects = ['butterflies', 'fireflies', 'mayflies'];
+        const location = locations[Math.floor(Math.random() * locations.length)];
+        const insect = insects[Math.floor(Math.random() * insects.length)];
+
         const msg = [
             `You awaken${state.awakened ? ' again ' : ' '}in a mysterious forest.`,
+            `You are in a ${location} where ${insect} gather`,
             "The air is enchanted with much memory.",
             "You hear faintly the leaves in the canopy dancing.",
         ];

@@ -46,7 +46,7 @@ async function main() {
         // we ultimately want to know what scene is next
         // given its name as a key (every moment, we unlock
         // a magic door! <3)
-        let key = null;
+        let sceneKey = null;
         // ephemeral scenes have no action, they just display their description and pop off
         if (scene.ephemeral) {
             sceneStack.pop();
@@ -61,14 +61,14 @@ async function main() {
             default:
                 if (/.+Scene/.test(action)) {
                     // if the value of the choice was a scene name...
-                    key = action;
+                    sceneKey = action;
                 } else if (/describeItem_.+/.test(action)) {
                     // if the value of the choice was to describe an item...
                     const itemName = action.match(/describeItem_(.+)/)[1];
                     describeItem(itemName);
                 } else {
                     // else get it from the return value of .interact()
-                    key = scene.interact(scene, state, action);
+                    sceneKey = scene.interact(scene, state, action);
                 }
         }
         await sleep(200);
@@ -81,14 +81,14 @@ async function main() {
         //
         // transition to the next scene
         //
-        if (!key) {
-            // if given no key, nothing is next, simply pop this scene
+        if (!sceneKey) {
+            // if given no sceneKey, nothing is next, simply pop this scene
             sceneStack.pop();
-        } else if (!scenes[key]) {
+        } else if (!scenes[sceneKey]) {
             console.log(chalk.yellow('The muses have not seen that far into the tale yet...'));
             console.log(chalk.blue('~~~'));
         } else {
-            const nextScene = Object.assign({}, scenes[key]);
+            const nextScene = Object.assign({}, scenes[sceneKey]);
             if (nextScene.stack) {
                 sceneStack.push(nextScene);
             } else {

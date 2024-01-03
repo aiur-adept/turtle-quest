@@ -22,11 +22,12 @@ async function main() {
 
     // begin the scene and the state
     const [firstScene, state] = awaken();
-    const sceneStack = [firstScene];
+    let sceneStack = [firstScene];
 
     // game loop
     while (true) {
         // TODO: run global logics each loop, like a random encounter chance, or vanish state.extraSense after 3 scenes, etc.
+
 
         // consider the current scene
         // (but first, guard against zero-stack)
@@ -34,6 +35,12 @@ async function main() {
             sceneStack.push(awaken()[0]);
         }
         const scene = sceneStack[sceneStack.length - 1];
+
+
+        // awaken from any dream scene if state.dreaming == 0
+        if (scene.isDream && state.dreaming == 0) {
+            sceneStack = [scenes.awaken_enterScene];
+        }
 
         //
         // display the scene

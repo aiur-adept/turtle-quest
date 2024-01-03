@@ -4,6 +4,16 @@ import {
 } from './awaken.js';
 
 import {
+    dreamScene,
+    crowDreamScene,
+    bearDreamScene,
+    fishDreamScene,
+    crowInteractScene,
+    bearInteractScene,
+    fishInteractScene,
+} from './dream.js';
+
+import {
     menuScene,
     viewInventoryScene,
     checkStatsScene
@@ -44,6 +54,14 @@ import {
 export {
     awaken_enterScene,
     awaken_exploreScene,
+
+    dreamScene,
+    crowDreamScene,
+    bearDreamScene,
+    fishDreamScene,
+    crowInteractScene,
+    bearInteractScene,
+    fishInteractScene,
 
 
     menuScene,

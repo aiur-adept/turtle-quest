@@ -12,6 +12,7 @@ const magicScene = {
     choices: [
         { name: "Cast a spell of protection", value: "castProtection" },
         { name: "Cast a spell of travel", value: "castTravel" },
+        { name: "Cast a spell of dreaming", value: "castDream" },
         { name: "Return to the start of the tale", value: "returnStart" },
         { name: "Cast no magic", value: null }
     ],
@@ -28,10 +29,15 @@ const magicScene = {
                     + chalk.yellow("'TODO: ask for a travel key here...'"));
                 next = 'awakenScene';
                 break;
+            case 'castDream':
+                storyTell("You imbue your mindbody with dreaming powers, enough for one dream...");
+                state.dreaming = 5;
+                next = null;
+                break;
             case 'returnStart':
                 storyTell("You cast Awaken;");
                 storyTell("A magical shower covers all, and you return...");
-                next = 'awakenScene';
+                next = 'awaken_enterScene';
                 break;
         }
         storyTell("~~~~~~~~~~~~~~~~~~*~*~*~~~~~~~~~~~~~~~~~~")

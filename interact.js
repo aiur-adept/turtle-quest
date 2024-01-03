@@ -18,6 +18,10 @@ async function interact(scene, state) {
         if (scene.name !== 'magicScene' && scene.name !== 'menuScene') {
             choices.push({ name: "Use magic", value: "magicScene" });
         }
+        // add dream option if state.dreaming > 0
+        if (state.dreaming > 0) {
+            choices.push({ name: "Dream", value: "dreamScene" });
+        }
         // add menu choice if not already in menuScene
         if (scene.name !== 'menuScene') {
             choices.push({ name: "Open menu", value: "menuScene" });

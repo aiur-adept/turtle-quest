@@ -1,10 +1,11 @@
 import { storyTell } from './storyTeller.js';
 import { sleep } from './utils.js';
 
-const describeScene = async (description, state) => {
+const describeScene = async (scene, state) => {
+    let description = scene.description;
     // if a function, call it (it should return either an array or one line)
     if (description.apply && description.call) {
-        description = description(state);
+        description = description(scene, state);
     }
     // if it's an array, print each line
     if (Array.isArray(description)) {

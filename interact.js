@@ -6,17 +6,13 @@ async function interact(scene, state) {
     //
     // construct choices
     //
-    // copy choices (we will mutate it)
+    // copy choices with Array.from (we will mutate it)
+    // (note: choices can be a function or an array or not even present)
     let choices = scene.choices ?
         ((scene.choices.call && scene.choices.apply) ?
-            Array.from(scene.choices(state)) :
+            Array.from(scene.choices(scene, state)) :
             Array.from(scene.choices))
         : [];
-    // .choiceFunc() is used to give nondeterministic or 
-    // contextual options
-    if (scene.choiceFunc) {
-        choices = choices.concat(scene.choiceFunc(state));
-    }
     if (!scene.exclusiveChoices) {
         // add magic choice if not already in magicScene
         if (scene.name !== 'magicScene' && scene.name !== 'menuScene') {

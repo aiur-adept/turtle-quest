@@ -17,18 +17,28 @@ const ruins_enterScene = {
 
 const ruins_foyerScene = {
     name: 'ruins_foyerScene',
-    description: [
-        "You return to the entrance to the ruins. Soft light provides",
-        "The barest illumination. You see a blue doorway and a red doorway,",
-        "And you sense a hidden pathway as well."
-    ],
-    choices: [
-        { name: "Enter the blue doorway", value: "ruins_blueDoorway_EnterScene" },
-        { name: "Enter the red doorway", value: "ruins_redDoorway_EnterScene" },
-        { name: "Follow the hidden path", value: "ruins_hiddenPath_EnterScene" },
-        { name: "Return to the forest", value: "awaken_exploreScene" }
-
-    ]
+    description: (self, state) => {
+        const msgs = [
+            "You return to the entrance to the ruins. Soft light provides",
+            "The barest illumination, and you can see the walls are carved",
+            "With many strange glyphs. You see a blue doorway and a red doorway."
+        ];
+        if (Math.random() < 0.33) {
+            state.extraSense = true;
+            msgs.push("And you sense a hidden pathway as well.");
+        }
+        return msgs;
+    },
+    choices: (self, state) => {
+        const choices = [
+            { name: "Enter the blue doorway", value: "ruins_blueDoorway_EnterScene" },
+            { name: "Enter the red doorway", value: "ruins_redDoorway_EnterScene" },
+            { name: "Return to the forest", value: "awaken_exploreScene" }
+        ];
+        if (state.extraSense) {
+            choices.push({ name: "Follow the hidden path", value: "ruins_hiddenPath_EnterScene" });
+        }
+    }
 };
 
 const ruins_blueDoorway_EnterScene = {
@@ -116,8 +126,7 @@ const ruins_hiddenPathLeftScene = {
     description: [
         "You follow the hidden path as it branches to the left.",
     ],
-    choices: [],
-    choiceFunc: (state) => {
+    choices: (self, state) => {
         const possibilities = [
             { name: "Take the right branch", value: "ruins_hiddenPathRightScene" },
         ]
@@ -141,8 +150,7 @@ const ruins_hiddenPathRightScene = {
         "You follow the hidden path as it branches to the right.",
 
     ],
-    choices: [],
-    choiceFunc: (state) => {
+    choices: (self, state) => {
         const possibilities = [
             { name: "Take the left branch", value: "ruins_hiddenPathLeftScene" },
         ]

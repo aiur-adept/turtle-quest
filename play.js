@@ -26,6 +26,8 @@ async function main() {
 
     // game loop
     while (true) {
+        // TODO: run global logics each loop, like a random encounter chance, or vanish state.extraSense after 3 scenes, etc.
+
         // consider the current scene
         // (but first, guard against zero-stack)
         if (sceneStack.length == 0) {
@@ -36,7 +38,7 @@ async function main() {
         //
         // display the scene
         //
-        await describeScene(scene.description, state);
+        await describeScene(scene, state);
 
         //
         // interact with the scene (and get the next scene)
@@ -75,7 +77,7 @@ async function main() {
 
         // scene has ended, run onEnd hook
         if (scene.onEnd) {
-            scene.onEnd(state);
+            scene.onEnd(scene, state, action);
         }
 
         //

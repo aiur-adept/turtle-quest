@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Adventure</title>
+    <style>
+        body {
+            background-color: #001f3f;
+            /* Dark blue background */
+            color: #ffffff;
+            /* White text */
+            font-family: 'Courier New', monospace;
+            /* Monospace font */
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        #terminal {
+            overflow-y: scroll;
+            max-height: 400px;
+            /* Adjust the height as needed */
+            border: 1px solid #ffffff;
+            /* White border */
+            padding: 10px;
+        }
+
+        #banner {
+            width: 100%;
+        }
+
+        #choices-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333333;
+            /* Dark gray background */
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #choices-container div {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+            display: block;
+        }
+
+        #choices-container div:hover {
+            background-color: #555555;
+            /* Darker gray on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="terminal">
+        <img id="banner" src="banner.png" />
+    </div>
+    <div id="choices-container"></div>
+
+    <script src="bundle.js"></script>
+</body>
+
+</html>

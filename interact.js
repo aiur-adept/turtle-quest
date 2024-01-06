@@ -1,6 +1,5 @@
-import inquirer from 'inquirer';
-
-import { choiceFilter } from './filters/choice.js';
+const { inquire } = require('./io.js');
+const { choiceFilter } = require('./filters/choice.js');
 
 async function interact(scene, state) {
     //
@@ -38,16 +37,9 @@ async function interact(scene, state) {
     // interact
     //
     // use inquirer to get actual interaction
-    return await inquirer.prompt([
-        {
-            type: 'list',
-            name: 'action',
-            message: '>',
-            choices,
-        },
-    ]);
-};
+    return inquire(choices);
+}
 
-export {
+module.exports = {
     interact
 };

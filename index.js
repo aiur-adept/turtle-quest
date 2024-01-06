@@ -1,13 +1,12 @@
-import chalk from 'chalk';
+const { describeScene } = require('./describeScene.js');
+const { describeItem } = require('./describeItem.js');
+const { interact } = require('./interact.js');
+const { sleep } = require('./utils.js');
+const { gameData } = require('./gameData.js');
+const scenes = require('./scenes/index.js');
+const { storyTellMeta } = require('./storyTeller.js');
 
-import { printBanner } from './banner.js';
-import { describeScene } from './describeScene.js';
-import { describeItem } from './describeItem.js';
-import { interact } from './interact.js';
-import { sleep } from './utils.js';
 
-import { gameData } from './gameData.js';
-import * as scenes from './scenes/index.js';
 
 const awaken = () => (
     [
@@ -17,8 +16,6 @@ const awaken = () => (
 );
 
 async function main() {
-    // welcome the player
-    printBanner();
 
     // begin the scene and the state
     const [firstScene, state] = awaken();
@@ -35,6 +32,7 @@ async function main() {
             sceneStack.push(awaken()[0]);
         }
         const scene = sceneStack[sceneStack.length - 1];
+        console.log(scene);
 
 
         // awaken from any dream scene if state.dreaming == 0
@@ -61,8 +59,8 @@ async function main() {
             sceneStack.pop();
             continue;
         }
-        const { action } = await interact(scene, state);
-        console.log();
+        const action = await interact(scene, state);
+        console.log(action);
         await sleep(200);
         switch (action) {
             case null:
@@ -76,8 +74,7 @@ async function main() {
                     const itemName = action.match(/describeItem_(.+)/)[1];
                     describeItem(itemName);
                 } else {
-                    // else get it from the return value of .interact()
-                    sceneKey = scene.interact(scene, state, action);
+                    console.error('unknown action ' + action);
                 }
         }
         await sleep(200);
@@ -94,8 +91,8 @@ async function main() {
             // if given no sceneKey, nothing is next, simply pop this scene
             sceneStack.pop();
         } else if (!scenes[sceneKey]) {
-            console.log(chalk.yellow('The muses have not seen that far into the tale yet...'));
-            console.log(chalk.blue('~~~'));
+            storyTellMeta('The muses have not seen that far into the tale yet...', 'yellow');
+            storyTellMeta('~~~', 'blue');
         } else {
             const nextScene = Object.assign({}, scenes[sceneKey]);
             if (nextScene.stack) {
@@ -107,4 +104,5 @@ async function main() {
     }
 }
 
+console.log('TURTLE QUEST CONSOLE');
 main();

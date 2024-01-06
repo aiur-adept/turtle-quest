@@ -1,11 +1,9 @@
-import chalk from 'chalk';
-
 const trees_talkEnterScene = {
     name: 'awaken_talkScene',
     description: [
         "You communicate with the ancient trees,",
         "placing your hands on their trunks, asking them to speak.",
-        "They say, " + chalk.yellow("'We will speak softly of forgotten secrets...'"),
+        "They say, " + "'We will speak softly of forgotten secrets...'",
     ],
     choices: [
         { name: "Ask about the forest's history", value: "trees_askHistoryScene" },
@@ -17,9 +15,9 @@ const trees_talkEnterScene = {
 const trees_askHistoryScene = {
     name: 'trees_askHistoryScene',
     description: [
-        chalk.yellow("'In the beginning, there were the seedlings, first to awaken...'"),
-        chalk.yellow("'Then the long years of many turnings of the sky-wheel...'"),
-        chalk.yellow("'And then the burning of the canopy, which made this forest...'"),
+        "'In the beginning, there were the seedlings, first to awaken...'",
+        "'Then the long years of many turnings of the sky-wheel...'",
+        "'And then the burning of the canopy, which made this forest...'",
 
     ],
     stack: true,
@@ -36,9 +34,9 @@ const trees_askSeedlingsScene = {
     ephemeral: true,
     stack: true,
     description: [
-        chalk.yellow("'...'"),
-        chalk.yellow("'the seedlings were before us, and they are after us...'"),
-        chalk.yellow("'...'")
+        "'...'",
+        "'the seedlings were before us, and they are after us...'",
+        "'...'"
     ]
 };
 
@@ -47,9 +45,9 @@ const trees_askLongYearsScene = {
     ephemeral: true,
     stack: true,
     description: [
-        chalk.yellow("'...'"),
-        chalk.yellow("'the long years were of weariness and woe...'"),
-        chalk.yellow("'...'")
+        "'...'",
+        "'the long years were of weariness and woe...'",
+        "'...'"
     ]
 };
 
@@ -58,9 +56,9 @@ const trees_askCanopyScene = {
     ephemeral: true,
     stack: true,
     description: [
-        chalk.yellow("'...'"),
-        chalk.yellow("'the canopy aflame, alit, like torches blazing in night...'"),
-        chalk.yellow("'...'")
+        "'...'",
+        "'the canopy aflame, alit, like torches blazing in night...'",
+        "'...'"
     ]
 };
 
@@ -69,13 +67,13 @@ const trees_askMagicScene = {
     ephemeral: true,
     stack: true,
     description: [
-        chalk.yellow("'...'"),
-        chalk.yellow("'true magic can never be used for evil...'"),
-        chalk.yellow("'...'")
+        "'...'",
+        "'true magic can never be used for evil...'",
+        "'...'"
     ]
 };
 
-export {
+module.exports = {
     trees_talkEnterScene,
 
     trees_askHistoryScene,

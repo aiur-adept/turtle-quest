@@ -1,5 +1,4 @@
-import { crowDream, bearDream, fishDream } from '../dream/index.js';
-import chalk from 'chalk';
+const { crowDream, bearDream, fishDream } = require('../dream/index.js');
 
 const dreamScene = {
     name: 'dreamScene',
@@ -22,7 +21,7 @@ const crowDreamScene = {
         const randomSight = crowDream.sights[Math.floor(Math.random() * crowDream.sights.length)];
         return [
             `You take on the perspective of a crow, soaring through the enchanted forest.`,
-            chalk.magenta(randomSight),
+            randomSight,
             "The dreamworld beckons with mysteries.",
             "What will you do?",
         ];
@@ -43,7 +42,7 @@ const bearDreamScene = {
         const randomSight = bearDream.sights[Math.floor(Math.random() * bearDream.sights.length)];
         return [
             `You embody the spirit of a bear, ambling through the enchanted forest.`,
-            chalk.magenta(randomSight),
+            randomSight,
             "The dreamworld unfolds its secrets before you.",
             "What will you do?",
         ];
@@ -64,7 +63,7 @@ const fishDreamScene = {
         const randomSight = fishDream.sights[Math.floor(Math.random() * fishDream.sights.length)];
         return [
             `You become one with a river-dwelling fish, gliding through the mystical waters.`,
-            chalk.magenta(randomSight),
+            randomSight,
             "The dreamworld beneath the surface holds untold wonders.",
             "What will you do?",
         ];
@@ -85,7 +84,7 @@ const crowInteractScene = {
         const randomInteraction = crowDream.interactions[Math.floor(Math.random() * crowDream.interactions.length)];
         return [
             "You decide to interact with the dreamworld as a crow.",
-            `The dreamworld responds with: "${chalk.magenta(randomInteraction)}"`,
+            `The dreamworld responds with: "${randomInteraction}"`,
             "What will you do next?",
         ];
     },
@@ -101,9 +100,9 @@ const bearInteractScene = {
         const randomInteraction = bearDream.interactions[Math.floor(Math.random() * bearDream.interactions.length)];
         return [
             "You choose to interact with the dreamworld as a bear.",
-            `The dreamworld responds with: "${chalk.magenta(randomInteraction)}"`,
+            `The dreamworld responds with: "${randomInteraction}"`,
             "What will you do next?",
-        ];
+        ]; from
     },
     choices: [
         { name: "Continue Dreaming as a Bear", value: "bearDreamScene" },
@@ -117,7 +116,7 @@ const fishInteractScene = {
         const randomInteraction = fishDream.interactions[Math.floor(Math.random() * fishDream.interactions.length)];
         return [
             "You decide to interact with the dreamworld as a fish.",
-            `The dreamworld responds with: "${chalk.magenta(randomInteraction)}"`,
+            `The dreamworld responds with: "${randomInteraction}"`,
             "What will you do next?",
         ];
     },
@@ -127,7 +126,7 @@ const fishInteractScene = {
     ]
 };
 
-export {
+module.exports = {
     dreamScene,
     crowDreamScene,
     bearDreamScene,

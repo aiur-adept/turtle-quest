@@ -1,4 +1,4 @@
-export const fishDream = {
+const fishDream = {
 
     perspective: "I glided through the enchanted river, scales shimmering in the moonlit waters as I explored the hidden depths of the mystical forest.",
 
@@ -15,4 +15,8 @@ export const fishDream = {
         "In the dreamworld beneath the surface, I encountered ethereal river spirits – graceful water nymphs who weaved tales of forgotten underwater kingdoms and offered glimpses into the future.",
         "As I approached the mystical whirlpool, I felt a pull towards the dreamworld, where schools of phosphorescent fish swirled in intricate patterns, symbolizing the interconnectedness of the river and the forest above.",
     ]
+};
+
+module.exports = {
+    fishDream
 };

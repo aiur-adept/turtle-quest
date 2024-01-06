@@ -3,6 +3,6 @@ const itemDescriptions = {
     'diamondSutra': 'a copy of the diamond sutra; where did it come from...?'
 };
 
-export {
+module.exports = {
     itemDescriptions
 };

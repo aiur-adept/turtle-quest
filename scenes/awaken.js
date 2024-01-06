@@ -1,5 +1,3 @@
-import chalk from 'chalk';
-
 const awaken_enterScene = {
     name: 'awaken_enterScene',
     description: (self, state) => {
@@ -59,7 +57,7 @@ const awaken_exploreScene = {
     }
 };
 
-export {
+module.exports = {
     awaken_enterScene,
     awaken_exploreScene
 };

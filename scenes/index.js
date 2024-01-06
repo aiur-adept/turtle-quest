@@ -1,29 +1,29 @@
-import {
+const {
     awaken_enterScene,
     awaken_exploreScene
-} from './awaken.js';
+} = require('./awaken.js');
 
-import {
+const {
     dreamScene,
     crowDreamScene,
     bearDreamScene,
     fishDreamScene,
     crowInteractScene,
     bearInteractScene,
-    fishInteractScene,
-} from './dream.js';
+    fishInteractScene
+} = require('./dream.js');
 
-import {
+const {
     menuScene,
     viewInventoryScene,
     checkStatsScene
-} from './menu.js';
+} = require('./menu.js');
 
-import {
-    magicScene,
-} from './magic.js';
+const {
+    magicScene
+} = require('./magic.js');
 
-import {
+const {
     ruins_enterScene,
     ruins_foyerScene,
 
@@ -37,9 +37,9 @@ import {
     ruins_hiddenPathLeftScene,
     ruins_hiddenPathRightScene,
     ruins_hiddenPathGatewayScene
-} from './ruins.js';
+} = require('./ruins.js');
 
-import {
+const {
     trees_talkEnterScene,
 
     trees_askHistoryScene,
@@ -48,10 +48,9 @@ import {
     trees_askCanopyScene,
 
     trees_askMagicScene
-} from './trees.js'
+} = require('./trees.js');
 
-
-export {
+module.exports = {
     awaken_enterScene,
     awaken_exploreScene,
 
@@ -63,14 +62,11 @@ export {
     bearInteractScene,
     fishInteractScene,
 
-
     menuScene,
     viewInventoryScene,
     checkStatsScene,
 
-
     magicScene,
-
 
     ruins_enterScene,
     ruins_foyerScene,
@@ -86,7 +82,6 @@ export {
     ruins_hiddenPathRightScene,
     ruins_hiddenPathGatewayScene,
 
-
     trees_talkEnterScene,
 
     trees_askHistoryScene,
@@ -95,5 +90,4 @@ export {
     trees_askCanopyScene,
 
     trees_askMagicScene
-
 };

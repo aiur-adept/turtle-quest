@@ -1,10 +1,16 @@
-import chalk from 'chalk';
+const { consolelog } = require('./io.js');
 
+// TODO: make this work in browser
 const storyTell = (line) => {
-    console.log(chalk.green(line));
+    consolelog(line);
     // TODO: use markov text (or generative AI?) to write more text in purple
 };
 
-export {
-    storyTell
+const storyTellMeta = (line, color) => {
+    consolelog(line);
+};
+
+module.exports = {
+    storyTell,
+    storyTellMeta
 };

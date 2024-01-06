@@ -10,6 +10,6 @@ const gameData = {
     },
 };
 
-export {
+module.exports = {
     gameData
 };

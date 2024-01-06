@@ -1,9 +1,9 @@
-import { crowDream } from './crow.js';
-import { bearDream } from './bear.js';
-import { fishDream } from './fish.js';
+const { crowDream } = require('./crow.js');
+const { bearDream } = require('./bear.js');
+const { fishDream } = require('./fish.js');
 
-export {
+module.exports = {
     crowDream,
     bearDream,
-    fishDream,
+    fishDream
 };

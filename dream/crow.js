@@ -1,4 +1,4 @@
-export const crowDream = {
+const crowDream = {
 
     perspective: "I soared through the enchanted forest, my ebony feathers catching the moonlight as I navigated the twisted branches and ethereal glows.",
 
@@ -15,4 +15,8 @@ export const crowDream = {
         "In the dreamworld, I encountered fantastical creatures – shimmering butterflies that left trails of iridescence in their wake and talking trees that shared ancient tales.",
         "With each interaction, the boundary between reality and dreams blurred, creating a kaleidoscopic tapestry of wonder and enchantment.",
     ]
+};
+
+module.exports = {
+    crowDream
 };

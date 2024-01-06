@@ -1,5 +1,5 @@
 const blackboard = {};
 
-export {
+module.exports = {
     blackboard
 };

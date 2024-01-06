@@ -1,4 +1,4 @@
-export const bearDream = {
+const bearDream = {
 
     perspective: "I ambled through the enchanted forest, my fur brushing against the vibrant foliage as I explored the magical realm.",
 
@@ -15,4 +15,8 @@ export const bearDream = {
         "In the dreamworld, I encountered fantastical beings – luminescent fireflies that danced in intricate patterns and wise owls that shared ancient wisdom.",
         "With each interaction, the boundaries between reality and dreams blurred, creating a tapestry of enchantment and wonder.",
     ]
+};
+
+module.exports = {
+    bearDream
 };

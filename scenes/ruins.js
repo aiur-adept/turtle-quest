@@ -1,5 +1,3 @@
-import chalk from 'chalk';
-
 const ruins_enterScene = {
     name: 'ruins_enterScene',
     description: [
@@ -63,7 +61,7 @@ const ruins_readBlueBookScene = {
         "You approach the blue book and read from it, noticing",
         "It's actually made of blue jade and has only one page visible.",
         "It reads:",
-        chalk.blue("Mystery and manifestations arise from the same source..."),
+        "Mystery and manifestations arise from the same source...",
         "You feel serenity at these words."
     ],
     choices: [
@@ -96,7 +94,7 @@ const ruins_readRedBookScene = {
         "You approach the red book and read from it, noticing",
         "It's actually made of red granite and has only one page visible.",
         "It reads:",
-        chalk.red("Returning to the source is completion and wholeness..."),
+        "Returning to the source is completion and wholeness...",
         "You feel safety at these words."
     ],
     choices: [
@@ -168,7 +166,7 @@ const ruins_hiddenPathGatewayScene = {
     description: [
         "You pass through the hidden doorway, and as you do,",
         "The voice of a woman speaks into your mind. She speaks,",
-        chalk.yellow("You shall find what you seek..."),
+        "You shall find what you seek...",
         "You pass through shade and curling incense smoke",
         "And hear the sound of the moon rising beyond the horizon",
         "And far above you a musical flute plays. You then awaken",
@@ -184,7 +182,7 @@ const ruins_hiddenPathGatewayScene = {
 };
 
 
-export {
+module.exports = {
     ruins_enterScene,
     ruins_foyerScene,
 

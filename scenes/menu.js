@@ -1,4 +1,4 @@
-import { blackboard } from '../blackboard.js';
+const { blackboard } = require('../blackboard.js');
 
 const menuScene = {
     name: 'menuScene',
@@ -55,7 +55,7 @@ const checkStatsScene = {
     ephemeral: true
 };
 
-export {
+module.exports = {
     menuScene,
     viewInventoryScene,
     checkStatsScene

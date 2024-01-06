@@ -1,6 +1,4 @@
-import chalk from 'chalk';
-
-import { storyTell } from '../storyTeller.js';
+const { storyTell } = require('../storyTeller.js');
 
 const magicScene = {
     name: 'magicScene',
@@ -26,7 +24,7 @@ const magicScene = {
                 break;
             case 'castTravel':
                 storyTell("A little fairy appears and says, "
-                    + chalk.yellow("'TODO: ask for a travel key here...'"));
+                    + "'TODO: ask for a travel key here...'");
                 next = 'awakenScene';
                 break;
             case 'castDream':
@@ -45,6 +43,6 @@ const magicScene = {
     }
 };
 
-export {
+module.exports = {
     magicScene,
 };

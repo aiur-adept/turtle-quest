@@ -1,5 +1,5 @@
-import { storyTell } from './storyTeller.js';
-import { sleep } from './utils.js';
+const { storyTell } = require('./storyTeller.js');
+const { sleep } = require('./utils.js');
 
 const describeScene = async (scene, state) => {
     let description = scene.description;
@@ -20,6 +20,6 @@ const describeScene = async (scene, state) => {
     await sleep(200);
 };
 
-export {
+module.exports = {
     describeScene
 };

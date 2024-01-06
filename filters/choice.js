@@ -3,6 +3,6 @@ const choiceFilter = (choices, state) => {
     return choices;
 };
 
-export {
+module.exports = {
     choiceFilter
 };

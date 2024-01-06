@@ -2,10 +2,10 @@
   "name": "turtle-quest",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "play.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "watchify index.js -d -o bundle.js -v & nodemon server.js"
   },
   "author": "aiur-adept",
   "license": "MIT",
@@ -13,5 +13,9 @@
     "chalk": "^5.3.0",
     "inquirer": "^9.2.12",
     "markovchain": "^1.0.2"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "watchify": "^4.0.0"
   }
 }

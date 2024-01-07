@@ -5,18 +5,27 @@ const consolelog = (message) => {
     terminal.scrollTop = terminal.scrollHeight;
 };
 
+const logChoice = (choice) => {
+    const p = document.createElement('p');
+    p.classList.add('choice');
+    p.textContent = choice.name;
+    terminal.appendChild(p);
+    terminal.scrollTop = terminal.scrollHeight;
+};
+
 const inquire = (choices) => {
     const choicesContainer = document.getElementById('choices-container');
     return new Promise((resolve) => {
         choicesContainer.innerHTML = '';
-
         for (const choice of choices) {
             const value = choice.value;
             console.log(choice);
             const choiceDiv = document.createElement('div');
-            choiceDiv.textContent = choice.name;
+            const choiceSpan = document.createElement('span');
+            choiceSpan.textContent = choice.name;
+            choiceDiv.appendChild(choiceSpan);
             choiceDiv.addEventListener('click', () => {
-                resolve(value);
+                resolve(choice);
                 choicesContainer.innerHTML = '';
             });
             choicesContainer.appendChild(choiceDiv);
@@ -24,7 +33,9 @@ const inquire = (choices) => {
     });
 };
 
+
 module.exports = {
     consolelog,
+    logChoice,
     inquire
 };

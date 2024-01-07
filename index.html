@@ -8,11 +8,8 @@
     <style>
         body {
             background-color: #001f3f;
-            /* Dark blue background */
             color: #ffffff;
-            /* White text */
             font-family: 'Courier New', monospace;
-            /* Monospace font */
             margin: 0;
             padding: 20px;
             overflow: hidden;
@@ -21,14 +18,21 @@
         #terminal {
             overflow-y: scroll;
             max-height: 400px;
-            /* Adjust the height as needed */
             border: 1px solid #ffffff;
-            /* White border */
             padding: 10px;
         }
 
+        #terminal p {
+            margin: 5px;
+        }
+
+        #terminal .choice {
+            text-align: right;
+            margin: 0;
+        }
+
         #banner {
-            width: 100%;
+            max-width: 300px;
         }
 
         #choices-container {
@@ -37,25 +41,27 @@
             left: 0;
             width: 100%;
             background-color: #333333;
-            /* Dark gray background */
             padding: 10px;
             display: flex;
-            justify-content: space-around;
+            /* Make child divs stack vertically */
+            flex-direction: column;
             align-items: center;
         }
 
         #choices-container div {
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #choices-container div span {
             padding: 8px;
             border-radius: 5px;
-            margin: 0 5px;
-            transition: background-color 0.3s ease;
+            margin: 5px 0;
             display: block;
         }
 
-        #choices-container div:hover {
+        #choices-container div:hover span {
             background-color: #555555;
-            /* Darker gray on hover */
         }
     </style>
 </head>

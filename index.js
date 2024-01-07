@@ -1,3 +1,4 @@
+const { consolelog, logChoice } = require('./io.js');
 const { describeScene } = require('./describeScene.js');
 const { describeItem } = require('./describeItem.js');
 const { interact } = require('./interact.js');
@@ -59,8 +60,9 @@ async function main() {
             sceneStack.pop();
             continue;
         }
-        const action = await interact(scene, state);
-        console.log(action);
+        const choice = await interact(scene, state);
+        const action = choice.value;
+        logChoice(choice);
         await sleep(200);
         switch (action) {
             case null:

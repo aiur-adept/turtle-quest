@@ -5,14 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "name": "Launch via NPM",
             "request": "launch",
-            "name": "Launch Program",
+            "runtimeArgs": [
+                "start"
+            ],
+            "runtimeExecutable": "/home/userr/.nvm/versions/node/v20.10.0/bin/npm",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/play.js",
-            "console": "integratedTerminal"
+            "type": "node"
         }
     ]
 }

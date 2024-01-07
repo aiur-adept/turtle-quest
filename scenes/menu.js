@@ -15,7 +15,7 @@ const menuScene = {
 
 const viewInventoryScene = {
     name: 'viewInventoryScene',
-    description: (state) => {
+    description: (self, state) => {
         const msgs = ["You set down your pack and look through it."];
         for (const item in state.inventory) {
             msgs.push(item)
@@ -24,7 +24,7 @@ const viewInventoryScene = {
     },
     stack: true,
     exclusiveChoices: true,
-    choices: (state) => {
+    choices: (self, state) => {
         const choices = [];
         for (const item in state.inventory) {
             choices.push({ name: item, value: `describeItem_${item}` });
@@ -35,14 +35,14 @@ const viewInventoryScene = {
 
 const checkStatsScene = {
     name: 'checkStatsScene',
-    description: (state) => {
+    description: (self, state) => {
         const msgs = [
             'Health:',
             `  o ${state.health}`,
             'Mind:',
             `  = ${state.mind}`
         ];
-        if (state.auras.size > 0) {
+        if (state.auras && state.auras.size > 0) {
             msgs.push("Auras:");
             for (const aura in state.auras) {
                 msgs.push(`  + ${aura}`)

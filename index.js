@@ -75,6 +75,8 @@ async function main() {
                     // if the value of the choice was to describe an item...
                     const itemName = action.match(/describeItem_(.+)/)[1];
                     describeItem(itemName);
+                } else if (scene.interact) {
+                    scene.interact(scene, state, action);
                 } else {
                     console.error('unknown action ' + action);
                 }

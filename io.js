@@ -1,6 +1,7 @@
-const consolelog = (message) => {
+const consolelog = (message, color) => {
     const p = document.createElement('p');
     p.textContent = message;
+    p.style['color'] = color;
     terminal.appendChild(p);
     terminal.scrollTop = terminal.scrollHeight;
 };

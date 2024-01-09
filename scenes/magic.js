@@ -38,7 +38,7 @@ const magicScene = {
                 next = 'awaken_enterScene';
                 break;
         }
-        storyTell("~~~~~~~~~~~~~~~~~~*~*~*~~~~~~~~~~~~~~~~~~")
+        storyTell("~~~~~~~~~*~*~*~~~~~~~~")
         return next;
     }
 };

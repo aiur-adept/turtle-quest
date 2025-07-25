@@ -26,6 +26,7 @@ const awaken_enterScene = {
 
 const awaken_exploreScene = {
     name: 'awaken_exploreScene',
+    locationCrumb: 'forest',
 
     description: (self, state) => {
         const adjectives = ['mysterious', 'enchanted', 'ancient'];

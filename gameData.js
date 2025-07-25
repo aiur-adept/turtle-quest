@@ -7,6 +7,7 @@ const gameData = {
         },
         health: 20,
         auras: new Set(),
+        knownLocations: {},
     },
 };
 

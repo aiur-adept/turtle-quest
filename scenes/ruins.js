@@ -1,5 +1,6 @@
 const ruins_enterScene = {
     name: 'ruins_enterScene',
+    locationCrumb: 'ruins',
     description: [
         "You pass beneath the stone gateway, brushed by overgrown vines.",
         "The air is cool and a fresh wind from outside blows inward.",
@@ -36,6 +37,7 @@ const ruins_foyerScene = {
         if (state.extraSense) {
             choices.push({ name: "Follow the hidden path", value: "ruins_hiddenPath_EnterScene" });
         }
+        return choices;
     }
 };
 
@@ -107,57 +109,166 @@ const ruins_readRedBookScene = {
 
 const ruins_hiddenPath_EnterScene = {
     name: 'ruins_hiddenPath_EnterScene',
-    description: [
-        "You pass through a veil in space, a shimmering curtain of dreams,",
-        "And enter the hidden pathway through the ruins. It takes you through",
-        "Many branching passages."
-    ],
+    description: (self, state) => {
+        const msgs = [
+            "You pass through a veil in space, a shimmering curtain of dreams,",
+            "And enter the hidden pathway through the ruins.",
+            "The air here is thick with ancient magic,",
+            "And the walls seem to pulse with their own inner light."
+        ];
+        
+        if (Math.random() < 0.4) {
+            msgs.push("You hear distant echoes of voices speaking in forgotten tongues.");
+        }
+        
+        return msgs;
+    },
     choices: [
         { name: "Take the left branch", value: "ruins_hiddenPathLeftScene" },
         { name: "Take the right branch", value: "ruins_hiddenPathRightScene" },
-
+        { name: "Follow the central passage", value: "ruins_hiddenPathCenterScene" }
     ]
 };
 
 const ruins_hiddenPathLeftScene = {
     name: 'ruins_hiddenPathLeftScene',
-    description: [
-        "You follow the hidden path as it branches to the left.",
-    ],
+    description: (self, state) => {
+        const msgs = [
+            "You follow the hidden path as it branches to the left.",
+            "The passage narrows and the air grows cooler.",
+            "Ancient runes glow faintly along the walls,",
+            "Telling stories of those who walked these halls long ago."
+        ];
+        
+        if (Math.random() < 0.5) {
+            msgs.push("A gentle breeze carries the scent of old parchment and ink.");
+        }
+        
+        return msgs;
+    },
     choices: (self, state) => {
         const possibilities = [
             { name: "Take the right branch", value: "ruins_hiddenPathRightScene" },
-        ]
-        if (Math.random() < 0.5) {
+            { name: "Follow the central passage", value: "ruins_hiddenPathCenterScene" }
+        ];
+        
+        if (Math.random() < 0.4) {
             possibilities.push(
                 { name: "Take the left branch", value: "ruins_hiddenPathLeftScene" }
             );
         }
-        if (Math.random() < 0.33) {
+        
+        if (Math.random() < 0.25) {
             possibilities.push(
                 { name: "Enter through the friendship gateway", value: "ruins_hiddenPathGatewayScene" }
             );
         }
+        
         return possibilities;
     }
 };
 
 const ruins_hiddenPathRightScene = {
     name: 'ruins_hiddenPathRightScene',
-    description: [
-        "You follow the hidden path as it branches to the right.",
-
-    ],
+    description: (self, state) => {
+        const msgs = [
+            "You follow the hidden path as it branches to the right.",
+            "The passage widens and you hear the sound of flowing water.",
+            "Crystal formations sparkle in the walls,",
+            "Reflecting light in patterns that seem to dance."
+        ];
+        
+        if (Math.random() < 0.4) {
+            msgs.push("The air here feels charged with ancient energy.");
+        }
+        
+        return msgs;
+    },
     choices: (self, state) => {
         const possibilities = [
             { name: "Take the left branch", value: "ruins_hiddenPathLeftScene" },
-        ]
-        if (Math.random() < 0.5) {
+            { name: "Follow the central passage", value: "ruins_hiddenPathCenterScene" }
+        ];
+        
+        if (Math.random() < 0.4) {
             possibilities.push(
                 { name: "Take the right branch", value: "ruins_hiddenPathRightScene" }
             );
         }
+        
+        if (Math.random() < 0.3) {
+            possibilities.push(
+                { name: "Investigate the crystal formations", value: "ruins_hiddenPathCrystalScene" }
+            );
+        }
+        
         return possibilities;
+    }
+};
+
+const ruins_hiddenPathCenterScene = {
+    name: 'ruins_hiddenPathCenterScene',
+    description: (self, state) => {
+        const msgs = [
+            "You follow the central passage, which leads to a grand chamber.",
+            "The ceiling soars high above, supported by pillars of ancient stone.",
+            "In the center of the room stands a pedestal,",
+            "Upon which rests an ancient tome bound in leather."
+        ];
+        
+        if (Math.random() < 0.5) {
+            msgs.push("The air here feels heavy with the weight of forgotten knowledge.");
+        }
+        
+        return msgs;
+    },
+    choices: [
+        { name: "Examine the ancient tome", value: "ruins_hiddenPathTomeScene" },
+        { name: "Take the left branch", value: "ruins_hiddenPathLeftScene" },
+        { name: "Take the right branch", value: "ruins_hiddenPathRightScene" }
+    ]
+};
+
+const ruins_hiddenPathTomeScene = {
+    name: 'ruins_hiddenPathTomeScene',
+    description: [
+        "You approach the ancient tome and carefully open its pages.",
+        "The text is written in a script you cannot read,",
+        "But as you touch the pages, knowledge flows into your mind.",
+        "You learn of ancient secrets and forgotten wisdom."
+    ],
+    choices: [
+        { name: "Return to the central chamber", value: "ruins_hiddenPathCenterScene" },
+        { name: "Take the left branch", value: "ruins_hiddenPathLeftScene" },
+        { name: "Take the right branch", value: "ruins_hiddenPathRightScene" }
+    ],
+    onEnd: (self, state, action) => {
+        state.auras.add('ancient_wisdom');
+    }
+};
+
+const ruins_hiddenPathCrystalScene = {
+    name: 'ruins_hiddenPathCrystalScene',
+    description: (self, state) => {
+        const msgs = [
+            "You examine the crystal formations more closely.",
+            "They seem to pulse with inner light,",
+            "And as you touch them, visions flash through your mind."
+        ];
+        
+        if (state.auras && state.auras.has('ancient_wisdom')) {
+            msgs.push("The crystals resonate with your newfound knowledge.");
+        }
+        
+        return msgs;
+    },
+    choices: [
+        { name: "Return to the right branch", value: "ruins_hiddenPathRightScene" },
+        { name: "Take the left branch", value: "ruins_hiddenPathLeftScene" },
+        { name: "Follow the central passage", value: "ruins_hiddenPathCenterScene" }
+    ],
+    onEnd: (self, state, action) => {
+        state.auras.add('crystal_insight');
     }
 };
 
@@ -174,7 +285,7 @@ const ruins_hiddenPathGatewayScene = {
     ],
     choices: [
         { name: "Explore", value: "awaken_exploreScene" },
-        { name: "Talk to the trees", value: "awaken_talkScene" },
+        { name: "Talk to the trees", value: "trees_talkEnterScene" },
     ],
     onEnd: (self, state, action) => {
         state.inventory['diamondSutra'] = 1;
@@ -195,5 +306,8 @@ module.exports = {
     ruins_hiddenPath_EnterScene,
     ruins_hiddenPathLeftScene,
     ruins_hiddenPathRightScene,
+    ruins_hiddenPathCenterScene,
+    ruins_hiddenPathTomeScene,
+    ruins_hiddenPathCrystalScene,
     ruins_hiddenPathGatewayScene
 }

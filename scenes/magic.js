@@ -23,10 +23,26 @@ const magicScene = {
                 storyTell("A shimmering veil of aura surrounds you ~*+xo");
                 break;
             case 'castTravel':
-                storyTell("A little fairy appears and says, "
-                    + "'TODO: ask for a travel key here...'");
-                next = 'awakenScene';
-                break;
+                storyTell("A little fairy appears and says, 'you may travel where you have been...'");
+                const travelChoices = Object.entries(state.knownLocations).map(([crumb, sceneName]) => ({
+                    name: `Travel to ${crumb}`,
+                    value: sceneName
+                }));
+                travelChoices.push({ name: "Cancel travel", value: null });
+                
+                const travelScene = {
+                    name: 'travelScene',
+                    description: ["Choose your destination:"],
+                    choices: travelChoices,
+                    interact: (travelSelf, travelState, travelAction) => {
+                        if (travelAction && travelAction !== 'null') {
+                            return travelAction;
+                        }
+                        return null;
+                    }
+                };
+                
+                return travelScene;
             case 'castDream':
                 storyTell("You imbue your mindbody with dreaming powers, enough for one dream...");
                 state.dreaming = 5;

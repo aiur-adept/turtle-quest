@@ -36,6 +36,9 @@ const {
     ruins_hiddenPath_EnterScene,
     ruins_hiddenPathLeftScene,
     ruins_hiddenPathRightScene,
+    ruins_hiddenPathCenterScene,
+    ruins_hiddenPathTomeScene,
+    ruins_hiddenPathCrystalScene,
     ruins_hiddenPathGatewayScene
 } = require('./ruins.js');
 
@@ -49,6 +52,20 @@ const {
 
     trees_askMagicScene
 } = require('./trees.js');
+
+const {
+    path_enterScene,
+    path_deepForestScene,
+    path_symbolsScene,
+    path_clearingScene,
+    path_mistyGroveScene,
+    path_lightsScene,
+    path_waterReflectionScene,
+    path_ancientTreeScene,
+    path_treeWisdomScene,
+    path_treeJourneyScene,
+    path_beyondClearingScene
+} = require('./path.js');
 
 module.exports = {
     awaken_enterScene,
@@ -80,6 +97,9 @@ module.exports = {
     ruins_hiddenPath_EnterScene,
     ruins_hiddenPathLeftScene,
     ruins_hiddenPathRightScene,
+    ruins_hiddenPathCenterScene,
+    ruins_hiddenPathTomeScene,
+    ruins_hiddenPathCrystalScene,
     ruins_hiddenPathGatewayScene,
 
     trees_talkEnterScene,
@@ -89,5 +109,17 @@ module.exports = {
     trees_askLongYearsScene,
     trees_askCanopyScene,
 
-    trees_askMagicScene
+    trees_askMagicScene,
+
+    path_enterScene,
+    path_deepForestScene,
+    path_symbolsScene,
+    path_clearingScene,
+    path_mistyGroveScene,
+    path_lightsScene,
+    path_waterReflectionScene,
+    path_ancientTreeScene,
+    path_treeWisdomScene,
+    path_treeJourneyScene,
+    path_beyondClearingScene
 };

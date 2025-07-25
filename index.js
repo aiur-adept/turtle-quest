@@ -33,7 +33,9 @@ async function main() {
             sceneStack.push(awaken()[0]);
         }
         const scene = sceneStack[sceneStack.length - 1];
-        console.log(scene);
+        if (scene.locationCrumb) {
+            state.knownLocations[scene.locationCrumb] = scene.name;
+        }
 
 
         // awaken from any dream scene if state.dreaming == 0
@@ -76,7 +78,19 @@ async function main() {
                     const itemName = action.match(/describeItem_(.+)/)[1];
                     describeItem(itemName);
                 } else if (scene.interact) {
-                    scene.interact(scene, state, action);
+                    // if the scene has an interact method, call it and get the next scene
+                    const interactResult = scene.interact(scene, state, action);
+                    if (interactResult && typeof interactResult === 'object' && interactResult.name) {
+                        const nextScene = Object.assign({}, interactResult);
+                        if (nextScene.stack) {
+                            sceneStack.push(nextScene);
+                        } else {
+                            sceneStack[sceneStack.length - 1] = nextScene;
+                        }
+                        continue;
+                    } else if (interactResult && typeof interactResult === 'string') {
+                        sceneKey = interactResult;
+                    }
                 } else {
                     console.error('unknown action ' + action);
                 }

@@ -31,10 +31,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.4);
             padding: 20px 40px;
             border-radius: 10px;
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -64,8 +63,7 @@
             width: 100%;
         }
         .banner {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             padding: 40px 30px;
@@ -217,7 +215,7 @@
         </div>
     </section>
     
-    <div id="emailModal" class="modal">Email copied to clipboard!</div>
+    <div id="emailModal" class="modal">Email copied</div>
     
     <script>
         function copyEmail() {

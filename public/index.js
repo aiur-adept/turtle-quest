@@ -24,7 +24,7 @@ class BouncingPoint {
             this.initialSpeed = 2;
         }
         
-        this.maxSpeed = this.initialSpeed * 1.2;
+        this.maxSpeed = this.initialSpeed;
     }
     
     update() {
@@ -42,7 +42,7 @@ class BouncingPoint {
     }
     
     applyGravity(otherPoints) {
-        const G = 24.0;
+        const G = 150.0;
         const repulsionRadius = 80;
         const repulsionStrength = 15.0;
         const curlStrength = 0.02;

@@ -43,6 +43,10 @@ class BouncingPoint {
     
     applyGravity(otherPoints) {
         const G = 24.0;
+        const repulsionRadius = 80;
+        const repulsionStrength = 15.0;
+        const curlStrength = 0.02;
+        
         otherPoints.forEach(other => {
             if (other !== this) {
                 const dx = other.x - this.x;
@@ -50,9 +54,19 @@ class BouncingPoint {
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
                 if (distance > 0) {
-                    const force = G / (distance * distance);
-                    this.vx += (dx / distance) * force;
-                    this.vy += (dy / distance) * force;
+                    if (distance < repulsionRadius) {
+                        const repulsionForce = repulsionStrength / (distance * distance);
+                        this.vx -= (dx / distance) * repulsionForce;
+                        this.vy -= (dy / distance) * repulsionForce;
+                    } else {
+                        const force = G / (distance * distance);
+                        this.vx += (dx / distance) * force;
+                        this.vy += (dy / distance) * force;
+                    }
+                    
+                    const curlForce = curlStrength / (distance * distance);
+                    this.vx += (-dy / distance) * curlForce;
+                    this.vy += (dx / distance) * curlForce;
                 }
             }
         });
@@ -67,10 +81,16 @@ class BouncingPoint {
             this.vx *= scale;
             this.vy *= scale;
         }
+        
+        if (currentSpeed > 0.1) {
+            const curlForce = curlStrength * 0.1;
+            this.vx += (-this.vy / currentSpeed) * curlForce;
+            this.vy += (this.vx / currentSpeed) * curlForce;
+        }
     }
 }
 
-const N_POINTS = 5;
+const N_POINTS = 3;
 const points = Array.from({length: N_POINTS}, () => new BouncingPoint());
 
 function getSpectralColor(t) {

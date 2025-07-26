@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+        .canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .name-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .hero-section {
+            position: relative;
+            margin-top: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 60px 20px;
+            z-index: 2;
+        }
+        .banners-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .banner {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            min-width: 280px;
+            max-width: 350px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .banner:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .banner h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .banner p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        .banner a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .banner .link {
+            color: #64b5f6;
+            text-decoration: underline;
+            word-break: break-all;
+            margin-top: 15px;
+            font-size: 1.618rem;
+        }
+        .banner .link:hover {
+            color: #90caf9;
+        }
+        .email-link {
+            cursor: pointer;
+            color: #64b5f6;
+            text-decoration: underline;
+            word-break: break-all;
+            margin-top: 15px;
+            font-size: 1.618rem;
+        }
+        .email-link:hover {
+            color: #90caf9;
+        }
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10000;
+            font-size: 1.1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .modal.show {
+            opacity: 1;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20vh;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .scroll-caret {
+            color: white;
+            font-size: 3rem;
+            animation: bounce 2s infinite;
+            opacity: 0.9;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        .name-overlay h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .name-overlay p {
+            margin: 5px 0 0 0;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 200;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas-container">
+        <canvas id="canvas"></canvas>
+        <div class="name-overlay">
+            <h1>Nicole Hunter</h1>
+            <p>software developer</p>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-caret">⌄</div>
+        </div>
+    </div>
+    
+    <section class="hero-section">
+        <div class="banners-container">
+            <div class="banner">
+                <h3>GitHub</h3>
+                <a href="https://github.com/aiur-adept" target="_blank" class="link">link</a>
+            </div>
+            <div class="banner">
+                <h3>LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/nicole-hunter-174216a4/" target="_blank" class="link">link</a>
+            </div>
+            <div class="banner">
+                <h3>Contact</h3>
+                <div class="email-link" onclick="copyEmail()">nicolehunter705@gmail.com</div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="emailModal" class="modal">Email copied to clipboard!</div>
+    
+    <script>
+        function copyEmail() {
+            navigator.clipboard.writeText('nicolehunter705@gmail.com').then(() => {
+                const modal = document.getElementById('emailModal');
+                modal.classList.add('show');
+                setTimeout(() => {
+                    modal.classList.remove('show');
+                }, 2000);
+            });
+        }
+    </script>
+    
+    <script type="module">
+        import './index.js';
+    </script>
+</body>
+</html>
